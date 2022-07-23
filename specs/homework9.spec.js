@@ -25,14 +25,14 @@ describe('API тесты ДЗ 9', () => {
                     {email: '@service.com', testDescription: 'без логина'},
                     {email: '@', testDescription: 'только собака'},
                 ])('невалидный емейлы - $testDescription', async ({email}) => {
-                    await api().Mailboxlayer().getEmail(accessKey, email);
+                    let response = await api().Mailboxlayer().getEmail(accessKey, email);
                     expect(response.status).to.equal(400);
                 });
             });
 
             describe('без авторизации', () => {
                 test('валидный email без авторизации', async () => {
-                    await api().Mailboxlayer().getEmail('', validEmail);
+                    let response = await api().Mailboxlayer().getEmail('', validEmail);
                     expect(response.status).to.equal(401);
                 });
             });
