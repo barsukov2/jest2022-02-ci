@@ -41,8 +41,9 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: test-report
 
-      - name: Send telegram message on push
+      - name: Send telegram message
         uses: appleboy/telegram-action@master
+        if: always()
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
