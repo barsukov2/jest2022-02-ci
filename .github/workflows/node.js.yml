@@ -25,12 +25,13 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npm test
-
-      - name: Download a Test report
         uses: actions/upload-artifact@v3
+        if: always()
         with:
-          name: report
-          path: test-report/index.html
+          name: testReport
+          path: |
+            test-report
+            index.html
 
       - name: Deploy report to Github Pages
         if: always()
